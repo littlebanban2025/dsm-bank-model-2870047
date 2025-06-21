@@ -7,7 +7,7 @@ from sklearn.model_selection import train_test_split
 from sklearn.ensemble import RandomForestClassifier
 
 #load data
-df = pd.read_csv("./bankData/bank.csv", header = None)
+df = pd.read_csv("C:/Users/chenl/Desktop/BankProject/bank.csv", header = None)
 
 #drop campaign related columns
 df.drop(df.iloc[:, 8:16], inplace = True, axis = 1)
@@ -33,7 +33,7 @@ X_categoric = df.iloc[:, [1,2,3,4,6,7]].values
 ohe = OneHotEncoder()
 categoric_data = ohe.fit_transform(X_categoric).toarray()
 categoric_df = pd.DataFrame(categoric_data)
-categoric_df.columns = ohe.get_feature_names()
+categoric_df.columns = ohe.get_feature_names_out()
 
 #combine numeric and categorix
 X_final = pd.concat([numeric_df, categoric_df], axis = 1)
